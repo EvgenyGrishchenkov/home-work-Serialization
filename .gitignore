@@ -1,0 +1,7 @@
+### IntelliJ IDEA ###
+*.iml
+.idea
+target/
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
