@@ -9,9 +9,9 @@ public class Main {
 
         Basket basket = null;
 
-        File file = new File("basket.txt");
+        File file = new File("basket.bin");
         if (file.exists()) {
-            basket = Basket.loadFromTxtFile(file);
+            basket = Basket.loadFromBinFile(file);
         } else {
             basket = new Basket(products, prices);
         }
@@ -32,7 +32,7 @@ public class Main {
             int productNumber = Integer.parseInt(parts[0]) - 1;
             int amount = Integer.parseInt(parts[1]);
             basket.addToCart(productNumber, amount);
-            basket.saveTxt(file);
+            basket.saveBin(file);
             basket.printCart();
 
         }
