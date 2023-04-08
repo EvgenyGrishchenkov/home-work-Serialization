@@ -21,11 +21,12 @@ public class Main {
         }
 
         Scanner scanner = new Scanner(System.in);
-
+        ClientLog log = new ClientLog();
         while (true) {
             System.out.println("Выберите товар и количество или введите end");
             String input = scanner.nextLine();
             if ("end".equals(input)) {
+                log.exportAsCSV(new File(log.csv));
                 break;
             }
             String[] parts = input.split(" ");
@@ -33,6 +34,7 @@ public class Main {
             int amount = Integer.parseInt(parts[1]);
             basket.addToCart(productNumber, amount);
             basket.saveTxt(file);
+            log.log(productNumber, amount);
             basket.printCart();
 
         }
