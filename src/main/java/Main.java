@@ -9,9 +9,9 @@ public class Main {
 
         Basket basket = null;
 
-        File file = new File("basket.txt");
+        File file = new File("basket.json");
         if (file.exists()) {
-            basket = Basket.loadFromTxtFile(file);
+            basket = Basket.loadFromJSONFile(file);
         } else {
             basket = new Basket(products, prices);
         }
@@ -26,21 +26,22 @@ public class Main {
             System.out.println("Выберите товар и количество или введите end");
             String input = scanner.nextLine();
             if ("end".equals(input)) {
-                log.exportAsCSV(new File(log.csv));
+                log.exportAsCCV(new File("log.csv"));
                 break;
             }
             String[] parts = input.split(" ");
             int productNumber = Integer.parseInt(parts[0]) - 1;
             int amount = Integer.parseInt(parts[1]);
             basket.addToCart(productNumber, amount);
-            basket.saveTxt(file);
             log.log(productNumber, amount);
-            basket.printCart();
+            basket.saveJSON(file);
+            //basket.printCart();
 
         }
         basket.printCart();
     }
 }
+
 
 
 
