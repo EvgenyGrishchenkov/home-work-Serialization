@@ -1,35 +1,35 @@
+
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
-
-import javax.swing.text.Element;
+import org.w3c.dom.Element;
+//import org.w3c.dom.Node;
+//import javax.swing.text.Element;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.IOException;
 
 public class XMLSettingsReader {
-    boolean isLoad;
-    String loadFile;
-    String loadFormat;
+    final boolean isLoad;
+    final String loadFile;
+   final String loadFormat;
+    final boolean isSave;
+    final String saveFile;
+    final String saveFormat;
+    final boolean isLog;
+    final String logFile;
 
-    boolean isSave;
-    String saveFile;
-    String saveFormat;
-
-    boolean isLog;
-    String logFile;
 
     public XMLSettingsReader (File xmlFile) throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = builder.parse(xmlFile);
 
-        Element root = (Element) doc.getDocumentElement();
+        Element root = doc.getDocumentElement();
         Element loadSettings = (Element) root.getElementsByTagName("load").item(0);
-        Element saveSettings = (Element) root.getElementsByTagName("load").item(0);
-        Element logSettings = (Element) root.getElementsByTagName("load").item(0);
-
-        //System.out.println(logSettings.getTextContent());
+        Element saveSettings = (Element) root.getElementsByTagName("save").item(0);
+        Element logSettings = (Element) root.getElementsByTagName("log").item(0);
 
         isLoad = Boolean.parseBoolean(loadSettings.getElementsByTagName("enabled").item(0).getTextContent());
         loadFile = loadSettings.getElementsByTagName("fileName").item(0).getTextContent();
@@ -41,6 +41,5 @@ public class XMLSettingsReader {
 
         isLog = Boolean.parseBoolean(logSettings.getElementsByTagName("enabled").item(0).getTextContent());
         logFile = logSettings.getElementsByTagName("fileName").item(0).getTextContent();
-        //loadFormat = loadSettings.getElementsByTagName("format").item(0).getTextContent();
     }
 }

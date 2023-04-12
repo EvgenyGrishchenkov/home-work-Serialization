@@ -19,6 +19,7 @@ public class Basket {
     }
 
     public void addToCart(int productNum, int amount) {
+
         buy[productNum] += amount;
     }
 
@@ -59,6 +60,45 @@ public class Basket {
             }
             Gson gson = new Gson();
             basket = gson.fromJson(builder.toString(),Basket.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return basket;
+    }
+    public void saveTxt(File file) throws IOException {
+        try (PrintWriter out = new PrintWriter(file)) {
+            for (String product : products) {
+                out.print(product + " ");
+            }
+            out.println();
+
+            for (int price : prices) {
+                out.print(price + " ");
+            }
+            out.println();
+
+            for (int purchase: buy) {
+                out.print(purchase + " ");
+            }
+        }
+    }
+
+    public static Basket loadFromTxtFile(File file) {
+        Basket basket = new Basket();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+            String product = bufferedReader.readLine();
+            String price = bufferedReader.readLine();
+            String purchase = bufferedReader.readLine();
+
+            basket.products = product.split(" ");
+            basket.prices = Arrays.stream(price.split(" "))
+                    .map(Integer::parseInt)
+                    .mapToInt(Integer::intValue)
+                    .toArray();
+            basket.buy = Arrays.stream(purchase.split(" "))
+                    .map(Integer::parseInt)
+                    .mapToInt(Integer::intValue)
+                    .toArray();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
