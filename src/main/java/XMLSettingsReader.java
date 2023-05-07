@@ -2,8 +2,7 @@
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import org.w3c.dom.Element;
-//import org.w3c.dom.Node;
-//import javax.swing.text.Element;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,7 +12,7 @@ import java.io.IOException;
 public class XMLSettingsReader {
     final boolean isLoad;
     final String loadFile;
-   final String loadFormat;
+    final String loadFormat;
     final boolean isSave;
     final String saveFile;
     final String saveFormat;
@@ -21,7 +20,7 @@ public class XMLSettingsReader {
     final String logFile;
 
 
-    public XMLSettingsReader (File xmlFile) throws ParserConfigurationException, IOException, SAXException {
+    public XMLSettingsReader(File xmlFile) throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = builder.parse(xmlFile);

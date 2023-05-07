@@ -1,5 +1,4 @@
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +17,9 @@ public class Main {
         File logFile = new File(settings.logFile);
 
         Basket basket = createBasket (loadFile, settings.isLoad, settings.loadFormat);
+
         ClientLog log = new ClientLog();
+
         for (int i = 0; i < products.length; i++) {
             System.out.println((i + 1) + " " + products[i] + " " + prices[i] + " руб/кг");
         }

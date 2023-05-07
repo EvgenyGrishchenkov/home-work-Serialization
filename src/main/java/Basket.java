@@ -9,17 +9,16 @@ public class Basket {
     private int[] prices;
     private int[] buy;
 
+    public Basket() {
+    }
+
     public Basket(String[] products, int[] prices) {
         this.products = products;
         this.prices = prices;
         this.buy = new int[products.length];
     }
 
-    public Basket() {
-    }
-
     public void addToCart(int productNum, int amount) {
-
         buy[productNum] += amount;
     }
 
@@ -29,7 +28,7 @@ public class Basket {
         for (int x : buy) {
             if (x == 0 && counter < buy.length) {
                 counter++;
-                //continue;
+                continue;
             } else if (x != 0 && counter < buy.length) {
                 System.out.println(products[counter] + " " + buy[counter] + "шт, " + prices[counter] + "руб/кг, " +
                         buy[counter] * prices[counter] + " руб. в сумме");
