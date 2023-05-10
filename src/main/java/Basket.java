@@ -4,7 +4,9 @@ import com.google.gson.GsonBuilder;
 import java.io.*;
 import java.util.Arrays;
 
-public class Basket {
+public class Basket implements Serializable {
+
+private static final long SerialVersionUID = 1L;
     private String[] products;
     private int[] prices;
     private int[] buy;
@@ -50,10 +52,10 @@ public class Basket {
     }
 
     public static Basket loadFromJSONFile(File file) {
-        Basket basket;
+        Basket basket;// = null;
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             StringBuilder builder = new StringBuilder();
-            String line = null;
+            String line;// = null;
             while ((line = reader.readLine()) != null) {
                 builder.append(line);
             }

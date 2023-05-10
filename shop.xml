@@ -1,8 +1,8 @@
 <config>
     <load>
         <enabled>true</enabled>
-        <fileName>basket.json</fileName>
-        <format>json</format>
+        <fileName>basket.txt</fileName>
+        <format>txt</format>
     </load>
 
     <save>
